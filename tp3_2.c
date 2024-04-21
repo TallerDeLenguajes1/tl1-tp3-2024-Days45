@@ -7,15 +7,17 @@ int main()
     // Se declara un puntero a char 'buff' y se reserva memoria para 100 caracteres.
     char *buff, **nombres;
     buff = (char *)malloc(100 * sizeof(char));
-
-    // Se solicita al usuario que ingrese 5 nombres.
-    printf("Ingrese 5 nombres:\n");
-
+    int cantidadNombres;
+    // Se solicita al usuario que ingrese la cantidad de nombres.
+    printf("Ingrese la cantidad nombres: ");
+    scanf("%d", &cantidadNombres);
+    // Se utiliza getchar() para consumir el carácter de nueva línea que queda en el búfer de entrada después de usar scanf().
+    getchar();
     // Se declara un puntero a puntero a char 'nombres' y se reserva memoria para 5 punteros a char.
-    nombres = (char **)malloc(5 * sizeof(char *));
+    nombres = (char **)malloc(cantidadNombres * sizeof(char *));
 
     // Se realiza un bucle para leer cada nombre.
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < cantidadNombres; i++)
     {
         // Se solicita al usuario que ingrese el nombre.
         printf("Nombre %d: ", i + 1);
@@ -28,10 +30,9 @@ int main()
 
     // Se imprime cada nombre ingresado.
     printf("\nLos nombres ingresados son:\n");
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < cantidadNombres; i++)
     {
         printf("Nombre %d: %s\n", i + 1, nombres[i]);
-
         // Se libera la memoria reservada para el nombre actual.
         free(nombres[i]);
     }
